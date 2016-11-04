@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     scene->addItem(brick);
     scene->addItem(ball);*/
     BreakOut *game = new BreakOut();
-    game->v->setRenderHint(QPainter::Antialiasing);
-    game->v->show();
+    game->view->setRenderHint(QPainter::Antialiasing);
+    game->view->show();
     //w->setRenderHint(QPainter::Antialiasing);
     //w->show();
 

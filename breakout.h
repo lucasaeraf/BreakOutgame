@@ -9,32 +9,34 @@
 #include <ball.h>
 #include <paddle.h>
 #include <brick.h>
+#include <QKeyEvent>
+#include <QTimerEvent>
+#include <QTimer>
 
 class BreakOut : public QWidget
 {
 public:
     BreakOut();
     ~BreakOut();
+    QGraphicsView *view;
 
-/*protected:
-    void timerEvent(QTimerEvent *);
-    void keyPressEvent(QKeyEvent *);
-    void keyReleaseEvent(QKeyEvent *);
+protected:
+    //virtual void timerEvent(QTimerEvent *);
+    virtual void keyPressEvent(QKeyEvent* );
+    virtual void keyReleaseEvent(QKeyEvent* );
     //void mouseMoveEvent(QMouseEvent *); //Método para ser implementado pro jogo cumprir os requisitos
 
-    void startGame();
+    /*void startGame();
     void pauseGame();
     void stopGame();
     void victory();
     void checkCollision();*/
 
 private:
-    QGraphicsScene *scene = new QGraphicsScene();
-    QGraphicsView *v = new QGraphicsView();
-    Ball *ball = new Ball(0, 0);
-    Paddle *player = new Paddle(0,50);
-    Paddle *boss = new Paddle(0, 0);
-    Brick *bricks[100];
+    QGraphicsScene *scene;
+    Ball *ball;
+    Paddle *player;
+    Paddle *boss;
     bool gameOver;
     bool gameWon;
     bool gameStarted;

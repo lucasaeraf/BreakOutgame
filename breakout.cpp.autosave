@@ -27,6 +27,7 @@ BreakOut::BreakOut()
     }
 
     player = new Paddle(0, 50);
+    
 
     boss = new Paddle(0,0);
     boss->setTransform(transf);
