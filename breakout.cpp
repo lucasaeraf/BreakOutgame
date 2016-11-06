@@ -24,6 +24,7 @@ BreakOut::BreakOut()
 
 
     scene->setSceneRect(0,0,427,377);
+    //scene->setSceneRect(0,0,700,800);
     for(int i = 1; i <= 10; i++){                                                               //Nessa primeira iteração colocamos os tijolso das colunas
         for(int j = 1; j <= 10; j++){                                                           //Nessa segunda iteração colocamos os tijolos das linhas
             tijolos.append(new Brick(112.5 + 23*(j-1), 60 + 28*(i-1), i, j));
@@ -52,6 +53,7 @@ BreakOut::BreakOut()
 
     view = new QGraphicsView(scene);
     view->setRenderHint(QPainter::Antialiasing);
+    view->fitInView(scene->sceneRect());
     view->show();
 
     QObject::startTimer(100);

@@ -55,6 +55,7 @@ int Ball::getYDir(){
 
 void Ball::autoMove(){
 
+    this->prepareGeometryChange();
     x_center += xdir;
     y_center += ydir;
     //qDebug() << x_center;
@@ -70,6 +71,6 @@ void Ball::autoMove(){
       ydir = -ydir;
     }
 
-    update();
+    this->update();
 
 }

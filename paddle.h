@@ -14,8 +14,9 @@ public:
     ~Paddle();
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *e);
+
 protected:
-    QRectF boundingRect() const;
+    virtual QRectF boundingRect() const;
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);

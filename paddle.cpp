@@ -26,14 +26,14 @@ void Paddle::keyPressEvent(QKeyEvent *event)
         this->setDy(-1);
         this->move();
         qDebug() << "Apertou pra cima";
-        this->update();
+        //this->update();
         break;
 
     case Qt::Key_Down:
         this->setDy(1);
         this->move();
         qDebug() << "Apertou pra baixo";
-        this->update();
+       // this->update();
         break;
     }
 }
@@ -91,12 +91,13 @@ QPainterPath Paddle::shape() const
 
 void Paddle::move(){
 
+    this->prepareGeometryChange();
     y_bound = boundingRect().y() + this->dy;
     qDebug() << y_bound;
     x_bound = boundingRect().x();
     qDebug() << x_bound;
-
     boundingRect().moveTo(x_bound, y_bound);
+    this->update();
 }
 
 void Paddle::setDy(int y){
