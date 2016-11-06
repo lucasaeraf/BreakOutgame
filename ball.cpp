@@ -34,6 +34,7 @@ void Ball::setBottomEdge(int bot){
 }
 
 void Ball::resetState(){
+    this->prepareGeometryChange();
     boundingRect().moveTo(x_center - 8, y_center - 8);
 }
 
@@ -70,7 +71,6 @@ void Ball::autoMove(){
     if (boundingRect().bottom() == BOTTOM_EDGE) {
       ydir = -ydir;
     }
-
     this->update();
 
 }

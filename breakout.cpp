@@ -24,7 +24,6 @@ BreakOut::BreakOut()
 
 
     scene->setSceneRect(0,0,427,377);
-    //scene->setSceneRect(0,0,700,800);
     for(int i = 1; i <= 10; i++){                                                               //Nessa primeira iteração colocamos os tijolso das colunas
         for(int j = 1; j <= 10; j++){                                                           //Nessa segunda iteração colocamos os tijolos das linhas
             tijolos.append(new Brick(112.5 + 23*(j-1), 60 + 28*(i-1), i, j));
@@ -56,6 +55,7 @@ BreakOut::BreakOut()
     view->fitInView(scene->sceneRect());
     view->show();
 
+
     QObject::startTimer(100);
 
 }
@@ -69,27 +69,22 @@ void BreakOut::setBallVelocidade(int x, int y){
     ball->setYDir(y);
 }
 
-/*
-void BreakOut::keyReleaseEvent(QKeyEvent *e) {
-
-    int dy = 0;
-
-    switch ( e->key() ) {
-        case Qt::Key_Up:
-            dy = 0;
-            this->player->setDy(dy);
-            break;
-
-        case Qt::Key_Down:
-            dy = 0;
-            this->player->setDy(dy);
-            break;
-        default:
-            QWidget::keyReleaseEvent(e);
-    }
-}*/
-
 void BreakOut::timerEvent(QTimerEvent *e) {
     Q_UNUSED(e);
+    foreach(Brick *i, this->tijolos){
+        if(this->ball->collidesWithItem(i,Qt::IntersectsItemShape)){//Detecção de colisão com os tijolos
+            scene->removeItem(i);
+            this->tijolos.removeOne(i);
+            ball->setYDir(-ball->getYDir());
+            this->update();
+        }
+    }
+    if(this->ball->collidesWithItem(boss, Qt::IntersectsItemShape)){ //Colisão com o boss
+        ball->setXDir(-ball->getXDir());
+    }
+    if(this->ball->collidesWithItem(player, Qt::IntersectsItemShape)){ //Colisão com o player
+        ball->setXDir(-ball->getXDir());
+    }
+
     ball->autoMove();
 }
