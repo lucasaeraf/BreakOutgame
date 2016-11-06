@@ -8,6 +8,7 @@ class Brick : public QGraphicsObject
 public:
     Brick(qreal x, qreal y, int i, int j);
     ~Brick();
+    int getX();
 
 protected:
     QRectF boundingRect() const;

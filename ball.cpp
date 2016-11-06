@@ -1,4 +1,5 @@
 #include "ball.h"
+#include <QDebug>
 
 //A classe Ball é reposável pelas funcionalidades e desenho da bola. Ela é uma reimplementação de QGraphicsItem
 Ball::Ball(qreal x, qreal y)
@@ -8,7 +9,14 @@ Ball::Ball(qreal x, qreal y)
 }
 
 QRectF Ball::boundingRect() const{
-    return QRectF(x_center - 7.5, y_center - 7.5, 15, 15);
+    return QRectF(x_center - 8, y_center - 8, 16, 16);
+}
+
+QPainterPath Ball::shape() const{
+    QPainterPath forma;
+    forma.addEllipse(boundingRect());
+    return forma;
+
 }
 
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
@@ -26,7 +34,7 @@ void Ball::setBottomEdge(int bot){
 }
 
 void Ball::resetState(){
-    boundingRect().moveTo(x_center - 7.5, y_center - 7.5);
+    boundingRect().moveTo(x_center - 8, y_center - 8);
 }
 
 void Ball::setXDir(int x){
@@ -47,14 +55,21 @@ int Ball::getYDir(){
 
 void Ball::autoMove(){
 
-    boundingRect().translate(xdir, ydir);
+    x_center += xdir;
+    y_center += ydir;
+    //qDebug() << x_center;
+    //qDebug() << y_center;
+    //qDebug() << boundingRect().top();
 
     if (boundingRect().top() == 0) {
-      ydir = -ydir;
+        qDebug() << "to dentro";
+        ydir = -ydir;
     }
 
     if (boundingRect().bottom() == BOTTOM_EDGE) {
       ydir = -ydir;
     }
+
+    update();
 
 }

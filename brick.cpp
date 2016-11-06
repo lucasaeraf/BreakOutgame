@@ -29,3 +29,6 @@ Brick::~Brick(){
     delete this;
 }
 
+int Brick::getX(){
+    return i_index;
+}

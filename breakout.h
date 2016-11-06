@@ -11,19 +11,32 @@
 #include <brick.h>
 #include <QKeyEvent>
 #include <QTimerEvent>
+#include <QWidget>
+#include <QList>
 #include <QTimer>
 
 class BreakOut : public QWidget
 {
+
 public:
     BreakOut();
     ~BreakOut();
     QGraphicsView *view;
+    QGraphicsScene *scene;
+    Ball *ball;
+    Paddle *player;
+    Paddle *boss;
+    QList <Brick* > tijolos;
+    bool gameOver;
+    bool gameWon;
+    bool gameStarted;
+    bool paused;
+    void setBallVelocidade(int x, int y);
 
 protected:
-    //virtual void timerEvent(QTimerEvent *);
-    virtual void keyPressEvent(QKeyEvent* );
-    virtual void keyReleaseEvent(QKeyEvent* );
+    virtual void timerEvent(QTimerEvent *);
+    //void keyPressEvent(QKeyEvent *event);
+    //void keyReleaseEvent(QKeyEvent *e);
     //void mouseMoveEvent(QMouseEvent *); //Método para ser implementado pro jogo cumprir os requisitos
 
     /*void startGame();
@@ -32,7 +45,7 @@ protected:
     void victory();
     void checkCollision();*/
 
-private:
+/*private:
     QGraphicsScene *scene;
     Ball *ball;
     Paddle *player;
@@ -40,7 +53,7 @@ private:
     bool gameOver;
     bool gameWon;
     bool gameStarted;
-    bool paused;
+    bool paused;*/
 };
 
 #endif // BREAKOUT_H

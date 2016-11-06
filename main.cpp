@@ -6,24 +6,14 @@
 #include <brick.h>
 #include <ball.h>
 #include <breakout.h>
+#include <QDebug>
 #include <QPainter>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    /*QGraphicsView *w = new QGraphicsView();
-    QGraphicsScene *scene = new QGraphicsScene();
-    w->setScene(scene);
-    Paddle *paddle = new Paddle(0, 0);
-    Ball *ball = new Ball(0, 100);
-    scene->addItem(paddle);
-    scene->addItem(brick);
-    scene->addItem(ball);*/
     BreakOut *game = new BreakOut();
-    game->view->setRenderHint(QPainter::Antialiasing);
-    game->view->show();
-    //w->setRenderHint(QPainter::Antialiasing);
-    //w->show();
-
+    //game->view->show();
+    //game->view->setRenderHint(QPainter::Antialiasing);
     return a.exec();
 }

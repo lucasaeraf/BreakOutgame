@@ -2,6 +2,9 @@
 #define PADDLE_H
 
 #include <QGraphicsItem>
+#include <QKeyEvent>
+#include <QWidget>
+#include <QGraphicsScene>
 
 
 class Paddle : public QGraphicsObject
@@ -9,12 +12,14 @@ class Paddle : public QGraphicsObject
 public:
     Paddle(qreal x, qreal y);
     ~Paddle();
-
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *e);
 protected:
     QRectF boundingRect() const;
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+    QPainterPath shape() const;
 
 public:
    void resetState(); //Função que será usada quando tivermos que resetar o jogo e redefinir a posição do paddle no tabuleiro
